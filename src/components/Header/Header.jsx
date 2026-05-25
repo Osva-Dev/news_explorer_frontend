@@ -3,9 +3,9 @@ import "./Header.css";
 function Header() {
   return (
     <div className="header__container">
-      <h1 className="headerTitle">NewsExplorer</h1>
-      <p>Inicio</p>
-      <button>Iniciar Sesión</button>
+      <h3 className="header__title">NewsExplorer</h3>
+      <p className="header__option">Inicio</p>
+      <button className="header__button">Iniciar Sesión</button>
     </div>
   );
 }
