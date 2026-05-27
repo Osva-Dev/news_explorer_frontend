@@ -1,10 +1,15 @@
 .header {
   height: 576px;
-  background-image: url("../../images/principal_image.jpg");
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.384)),
+    url("../../images/principal_image.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .header__container {
   background-color: rgba(0, 0, 0, 0);
+  border-bottom: 2px solid #ffffff1c;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,6 +45,18 @@
   font-size: 18px;
   padding: 10px;
   position: relative;
+}
+
+.header__button {
+  width: 176px;
+  height: 48px;
+  border-radius: 100px;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  border-color: white;
 }
 
 .link:after {
