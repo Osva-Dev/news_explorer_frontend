@@ -1,10 +1,15 @@
 .header {
   height: 576px;
-  background-image: url("../../images/principal_image.jpg");
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.384)),
+    url("../../images/principal_image.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .header__container {
   background-color: rgba(0, 0, 0, 0);
+  border-bottom: 2px solid #ffffff1c;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -15,14 +20,11 @@
 .header__logo {
   width: 200px;
   height: 24px;
-  gap: 110px;
   margin-left: 104px;
-  margin-right: 104px;
 }
 
 .header__right {
   display: flex;
-  flex-direction: row;
   align-items: center;
 }
 
@@ -34,7 +36,7 @@
   list-style: none;
 }
 
-.link {
+.header__link {
   text-decoration: none;
   color: white;
   font-size: 18px;
@@ -42,7 +44,76 @@
   position: relative;
 }
 
-.link:after {
+.header__button {
+  width: 176px;
+  height: 48px;
+  border-radius: 100px;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  border-color: white;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.header__hero {
+  display: flex;
+  flex-direction: column;
+  max-width: 608px;
+  width: 90%;
+  margin: 80px auto 0 auto;
+  padding: 0 20px;
+}
+
+.header__title {
+  color: white;
+  font-size: 60px;
+  line-height: 64px;
+  font-weight: 700;
+  margin: 0 0 32px 0;
+}
+
+.header__paragraph {
+  color: white;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 0 64px 0;
+}
+
+.header__search {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+.header__input {
+  flex: 1;
+  height: 64px;
+  background-color: #ffffff;
+  color: #1a1b22;
+  border-radius: 100px;
+  border: none;
+  padding: 0 24px;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header__search-button {
+  background-color: #2f71e5;
+  color: white;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+  width: 168px;
+  height: 64px;
+  border-radius: 100px;
+  border: none;
+}
+
+.header__link:after {
   content: "";
   width: 0;
   height: 4px;
@@ -54,7 +125,7 @@
   will-change: width;
 }
 
-.link:hover:after {
+.header__link:hover:after {
   width: 100%;
   right: 0;
 }
