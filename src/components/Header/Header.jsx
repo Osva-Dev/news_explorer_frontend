@@ -15,7 +15,7 @@ function Header() {
         <div className="header__right">
           <ul className="header__list">
             <li className="header__item">
-              <a href="#" className="link">
+              <a href="#" className="header__link">
                 Inicio
               </a>
             </li>
@@ -27,19 +27,19 @@ function Header() {
         </div>
       </div>
 
-      <div className="hero__container">
-        <h1 className="hero__title">¿Qué está pasando en el mundo?</h1>
-        <p className="hero__paragraph">
+      <div className="header__hero">
+        <h1 className="header__title">¿Qué está pasando en el mundo?</h1>
+        <p className="header__paragraph">
           Encuentra las últimas noticias sobre cualquier tema y guárdalas en tu
           cuenta personal.
         </p>
-        <div className="hero__search">
+        <div className="header__search">
           <input
             type="text"
-            className="hero__input"
+            className="header__input"
             placeholder="Introduce un tema"
           />
-          <button className="hero__button">Buscar</button>
+          <button className="header__search-button">Buscar</button>
         </div>
       </div>
     </header>
