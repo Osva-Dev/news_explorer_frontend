@@ -13,8 +13,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  margin-top: 0;
 }
 
 .header__logo {
@@ -84,17 +82,19 @@
 
 .header__search {
   display: flex;
+  position: relative;
   gap: 16px;
   width: 100%;
+  margin-bottom: 68px;
 }
 
 .header__input {
   flex: 1;
   height: 64px;
   background-color: #ffffff;
+  border: 1px solid #d1d2d6;
   color: #1a1b22;
   border-radius: 100px;
-  border: none;
   padding: 0 24px;
   font-size: 16px;
   outline: none;
@@ -102,15 +102,17 @@
 }
 
 .header__search-button {
+  position: absolute;
+  right: 0px;
   background-color: #2f71e5;
   color: white;
   font-size: 18px;
   line-height: 24px;
   font-weight: 500;
   width: 168px;
-  height: 64px;
+  height: 67px;
   border-radius: 100px;
-  border: none;
+  border: 3px solid #2f71e5;
 }
 
 .header__link:after {

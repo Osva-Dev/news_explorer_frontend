@@ -1,4 +1,25 @@
+.about {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+  gap: 56px;
+}
+
 .about__image {
-  width: 300px;
-  height: 300px;
+  width: 464px;
+  height: 464px;
+  border-radius: 100%;
+}
+
+.about__title {
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+}
+
+.about__paragraph {
+  width: 600px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
 }
