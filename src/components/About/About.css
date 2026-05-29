@@ -12,9 +12,11 @@
 }
 
 .about__title {
+  font-family: "Roboto Slab", sans-serif;
   font-weight: 400;
   font-size: 40px;
   line-height: 46px;
+  letter-spacing: 0px;
 }
 
 .about__paragraph {
