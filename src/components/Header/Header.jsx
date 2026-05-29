@@ -1,4 +1,5 @@
 import "./Header.css";
+import Navigation from "../Navigation/Navigation";
 
 import newExplorer from "/newsexplorer.svg";
 
@@ -33,14 +34,7 @@ function Header() {
           Encuentra las últimas noticias sobre cualquier tema y guárdalas en tu
           cuenta personal.
         </p>
-        <div className="header__search">
-          <input
-            type="text"
-            className="header__input"
-            placeholder="Introduce un tema"
-          />
-          <button className="header__search-button">Buscar</button>
-        </div>
+        <Navigation />
       </div>
     </header>
   );
