@@ -1,0 +1,32 @@
+.saved-news-header {
+  max-width: 580px;
+  width: 100%;
+  margin-left: 104px;
+  margin-right: 104px;
+  text-align: left;
+}
+
+.saved-news-header__subtitle {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.saved-news-header__title {
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+}
+
+.saved-news-header__keywords {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.bold {
+  font-weight: 700;
+}
