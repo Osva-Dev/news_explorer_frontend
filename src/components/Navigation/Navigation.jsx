@@ -3,12 +3,17 @@ import "./Navigation.css";
 function Navigation() {
   return (
     <div className="navegation">
-      <input
-        type="text"
-        className="navegation__input"
-        placeholder="Introduce un tema"
-      />
-      <button className="navegation__search-button">Buscar</button>
+      <ul className="navegation__list">
+        <li className="navegation__item">
+          <a href="#" className="navegation__link">
+            Inicio
+          </a>
+        </li>
+
+        <li className="navegation__item">
+          <button className="navegation__button">Iniciar Sesión</button>
+        </li>
+      </ul>
     </div>
   );
 }
