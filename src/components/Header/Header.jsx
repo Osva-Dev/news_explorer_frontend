@@ -1,5 +1,6 @@
 import "./Header.css";
 import SearchForm from "../SearchForm/SearchForm";
+import Navigation from "../Navigation/Navigation";
 
 import newExplorer from "/newsexplorer.svg";
 
@@ -12,19 +13,7 @@ function Header() {
           src={newExplorer}
           alt="News Explorer Logo"
         />
-        <div className="header__right">
-          <ul className="header__list">
-            <li className="header__item">
-              <a href="#" className="header__link">
-                Inicio
-              </a>
-            </li>
-
-            <li className="header__item">
-              <button className="header__button">Iniciar Sesión</button>
-            </li>
-          </ul>
-        </div>
+        <Navigation />
       </div>
       <div className="header__hero">
         <h1 className="header__title">¿Qué está pasando en el mundo?</h1>

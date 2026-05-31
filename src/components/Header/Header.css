@@ -21,45 +21,6 @@
   margin-left: 104px;
 }
 
-.header__right {
-  display: flex;
-  align-items: center;
-}
-
-.header__list {
-  display: flex;
-  gap: 57px;
-  align-items: center;
-  margin-right: 104px;
-  list-style: none;
-}
-
-.header__link {
-  text-decoration: none;
-  color: white;
-  padding: 10px;
-  position: relative;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 24px;
-}
-
-.header__button {
-  width: 176px;
-  height: 48px;
-  border-radius: 100px;
-  background-color: rgba(0, 0, 0, 0);
-  color: white;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 24px;
-  border-color: white;
-  border: 1px solid white;
-  cursor: pointer;
-}
-
 .header__hero {
   display: flex;
   flex-direction: column;

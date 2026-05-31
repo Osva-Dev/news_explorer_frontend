@@ -1,0 +1,38 @@
+.navegation {
+  display: flex;
+  align-items: center;
+}
+
+.navegation__list {
+  display: flex;
+  gap: 57px;
+  align-items: center;
+  margin-right: 104px;
+  list-style: none;
+}
+
+.navegation__link {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  position: relative;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.navegation__button {
+  width: 176px;
+  height: 48px;
+  border-radius: 100px;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  border-color: white;
+  border: 1px solid white;
+  cursor: pointer;
+}
