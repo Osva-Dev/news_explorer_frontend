@@ -4,6 +4,7 @@ import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
 import About from "../About/About";
+
 import "./App.css";
 
 function App() {

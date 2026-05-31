@@ -1,9 +1,18 @@
-import "./SavedNews.css";
+import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 
 function SavedNews() {
+  const savedCards = []; // aquí las tarjetas guardadas
+  const userName = "Elise";
+  const savedCount = 5;
+  const keywords = ["Naturaleza", "Yellowstone", "y 2 más"];
+
   return (
     <main className="saved-news">
-      <p>Artículos guardados (próximamente)</p>
+      <SavedNewsHeader
+        userName={userName}
+        savedCount={savedCount}
+        keywords={keywords}
+      />
     </main>
   );
 }

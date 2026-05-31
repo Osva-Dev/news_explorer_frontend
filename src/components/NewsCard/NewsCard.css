@@ -1,0 +1,135 @@
+.news-card {
+  width: 400px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.116);
+  background-color: #fff;
+  overflow: visible; /* Cambiado: permite que el tooltip sobresalga */
+  transition: box-shadow 0.2s;
+}
+
+.news-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.news-card__image-container {
+  position: relative;
+}
+
+.news-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* Contenedor del botón: posición absoluta sobre la imagen */
+.news-card__save-button__container {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2; /* Asegura que esté por encima de la imagen */
+}
+
+/* Estilos comunes para ambos iconos */
+.news-card__save-button {
+  width: 14px;
+  height: 19px;
+  display: block;
+}
+
+/* Por defecto: mostrar el icono normal, ocultar el hover */
+.news-card__save-button_default {
+  display: block;
+}
+.news-card__save-button_hover {
+  display: none;
+}
+
+/* Al hacer hover en el contenedor: ocultar normal y mostrar hover */
+.news-card__save-button__container:hover .news-card__save-button_default {
+  display: none;
+}
+.news-card__save-button__container:hover .news-card__save-button_hover {
+  display: block;
+}
+
+/* Tooltip */
+.news-card__save-tooltip {
+  position: absolute;
+  right: 100%; /* aparece encima del botón */
+  right: 60px;
+  margin-bottom: 8px;
+  background-color: #1a1b22;
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: nowrap;
+  padding: 8px 12px;
+  border-radius: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Mostrar el tooltip al hacer hover sobre el contenedor */
+.news-card__save-button__container:hover .news-card__save-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.news-card__container {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.news-card__date {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+  margin: 0;
+}
+
+.news-card__title {
+  font-family: "Roboto Slab", serif;
+  font-size: 26px;
+  line-height: 30px;
+  color: #1a1b22;
+  margin: 0;
+}
+
+.news-card__description {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a1b22;
+  margin: 0;
+}
+
+.news-card__source {
+  font-family: "Roboto Slab", serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #b6bcbf;
+  margin: 0;
+}
