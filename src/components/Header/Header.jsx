@@ -1,4 +1,7 @@
 import "./Header.css";
+
+import { Link } from "react-router-dom";
+
 import SearchForm from "../SearchForm/SearchForm";
 import Navigation from "../Navigation/Navigation";
 
@@ -8,11 +11,13 @@ function Header() {
   return (
     <header className="header">
       <div className="header__container">
-        <img
-          className="header__logo"
-          src={newExplorer}
-          alt="News Explorer Logo"
-        />
+        <Link to="/">
+          <img
+            className="header__logo"
+            src={newExplorer}
+            alt="News Explorer Logo"
+          />
+        </Link>
         <Navigation />
       </div>
       <div className="header__hero">

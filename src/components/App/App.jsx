@@ -1,15 +1,28 @@
+import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
-import About from "../About/About";
 import Footer from "../Footer/Footer";
-import Preloader from "../Preloader/Preloader";
+import Main from "../Main/Main";
+import SavedNews from "../SavedNews/SavedNews";
+import About from "../About/About";
+import "./App.css";
 
 function App() {
   return (
     <>
       <Header />
-      <About />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Main />
+              <About />
+            </>
+          }
+        />
+        <Route path="/saved-news" element={<SavedNews />} />
+      </Routes>
       <Footer />
-      <Preloader />
     </>
   );
 }
