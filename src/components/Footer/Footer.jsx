@@ -1,7 +1,7 @@
 import "./Footer.css";
 
-import Facebook from "../../assets/Icons/facebook.png";
-import Github from "../../assets/Icons/github.png";
+import Facebook from "../../images/icons/facebook.png";
+import Github from "../../images/icons/github.png";
 
 function Footer() {
   return (
