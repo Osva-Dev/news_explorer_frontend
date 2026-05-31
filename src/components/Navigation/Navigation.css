@@ -1,9 +1,9 @@
-.navegation {
+.navigation {
   display: flex;
   align-items: center;
 }
 
-.navegation__list {
+.navigation__list {
   display: flex;
   gap: 57px;
   align-items: center;
@@ -11,7 +11,7 @@
   list-style: none;
 }
 
-.navegation__link {
+.navigation__link {
   text-decoration: none;
   color: white;
   padding: 10px;
@@ -22,7 +22,7 @@
   line-height: 24px;
 }
 
-.navegation__button {
+.navigation__button {
   width: 176px;
   height: 48px;
   border-radius: 100px;
@@ -35,4 +35,21 @@
   border-color: white;
   border: 1px solid white;
   cursor: pointer;
+}
+
+.navigation__link:after {
+  content: "";
+  width: 0;
+  height: 4px;
+  background-color: aliceblue;
+  position: absolute;
+  bottom: -22px;
+  right: 50%;
+  transition: all 0.5s;
+  will-change: width;
+}
+
+.navigation__link:hover:after {
+  width: 100%;
+  right: 0;
 }

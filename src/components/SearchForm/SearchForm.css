@@ -1,4 +1,4 @@
-.searchform {
+.search-form {
   display: flex;
   position: relative;
   gap: 16px;
@@ -6,7 +6,7 @@
   margin-bottom: 68px;
 }
 
-.searchform__input {
+.search-form__input {
   flex: 1;
   height: 64px;
   background-color: #ffffff;
@@ -19,7 +19,7 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.searchform__search-button {
+.search-form__search-button {
   position: absolute;
   right: 0px;
   background-color: #2f71e5;

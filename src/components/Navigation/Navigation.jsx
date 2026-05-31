@@ -1,17 +1,22 @@
+import { Link } from "react-router-dom";
 import "./Navigation.css";
 
 function Navigation() {
   return (
-    <div className="navegation">
-      <ul className="navegation__list">
-        <li className="navegation__item">
-          <a href="#" className="navegation__link">
+    <div className="navigation">
+      <ul className="navigation__list">
+        <li className="navigation__item">
+          <Link to="/" className="navigation__link">
             Inicio
-          </a>
+          </Link>
         </li>
-
-        <li className="navegation__item">
-          <button className="navegation__button">Iniciar Sesión</button>
+        <li className="navigation__item">
+          <Link to="/saved-news" className="navigation__link">
+            Artículos Guardados
+          </Link>
+        </li>
+        <li className="navigation__item">
+          <button className="navigation__button">Iniciar Sesión</button>
         </li>
       </ul>
     </div>

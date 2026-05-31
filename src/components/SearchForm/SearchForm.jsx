@@ -2,13 +2,13 @@ import "./SearchForm.css";
 
 function SearchForm() {
   return (
-    <div className="searchform">
+    <div className="search-form">
       <input
         type="text"
-        className="searchform__input"
+        className="search-form__input"
         placeholder="Introduce un tema"
       />
-      <button className="searchform__search-button">Buscar</button>
+      <button className="search-form__search-button">Buscar</button>
     </div>
   );
 }
