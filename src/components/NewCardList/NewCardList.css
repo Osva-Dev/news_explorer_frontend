@@ -1,0 +1,44 @@
+.news-card-list {
+  padding: 2rem 1rem;
+  background-color: #f5f6f7;
+}
+
+.news-card-list__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Ajuste para pantallas grandes (3 columnas claras) */
+@media (min-width: 1024px) {
+  .news-card-list__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet: 2 columnas */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .news-card-list__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Móvil: 1 columna, ya lo es por defecto con auto-fill minmax(280px,1fr) */
+.news-card-list__show-more {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 0.75rem 1.5rem;
+  background-color: #fff;
+  border: 1px solid #d1d2d6;
+  border-radius: 80px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.news-card-list__show-more:hover {
+  background-color: #e8e8e8;
+}

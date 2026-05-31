@@ -1,9 +1,12 @@
-import "./Main.css";
+import NewsCardList from "../NewCardList/NewCardList";
 
 function Main() {
+  // Mock de 6 tarjetas (mismo contenido)
+  const mockCards = Array(6).fill({ id: 1 }); // mientras NewsCard no use props, esto funciona
+
   return (
     <main className="main">
-      <h1>Contenido principal</h1>
+      <NewsCardList cards={mockCards} showMoreButton={true} />
     </main>
   );
 }
