@@ -1,6 +1,15 @@
 .navigation {
+  background-color: rgba(0, 0, 0, 0);
+  border-bottom: 2px solid #ffffff1c;
   display: flex;
+  justify-content: space-between;
   align-items: center;
+}
+
+.navegation__logo {
+  width: 200px;
+  height: 24px;
+  margin-left: 104px;
 }
 
 .navigation__list {
