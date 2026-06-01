@@ -9,14 +9,7 @@ function Header() {
   return (
     <header className="header">
       <Navigation />
-      <div className="header__hero">
-        <h1 className="header__title">¿Qué está pasando en el mundo?</h1>
-        <p className="header__paragraph">
-          Encuentra las últimas noticias sobre cualquier tema y guárdalas en tu
-          cuenta personal.
-        </p>
-        <SearchForm />
-      </div>
+      <SearchForm />
     </header>
   );
 }
