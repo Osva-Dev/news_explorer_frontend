@@ -1,7 +1,32 @@
+/* Bloque search-form */
 .search-form {
   display: flex;
+  flex-direction: column;
+  max-width: 608px;
+  width: 90%;
+  margin: 80px auto 0 auto;
+  padding: 0 20px;
+}
+
+.search-form__title {
+  color: white;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 64px;
+  margin: 0 0 32px 0;
+}
+
+.search-form__subtitle {
+  color: white;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 0 64px 0;
+}
+
+.search-form__field {
+  display: flex;
   position: relative;
-  gap: 16px;
   width: 100%;
   margin-bottom: 68px;
 }
@@ -19,17 +44,22 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.search-form__search-button {
+.search-form__button {
   position: absolute;
-  right: 0px;
+  right: 0;
   background-color: #2f71e5;
   color: white;
   font-size: 18px;
   line-height: 24px;
   font-weight: 500;
   width: 168px;
-  height: 67px;
+  height: 64px;
   border-radius: 100px;
-  border: 3px solid #2f71e5;
+  border: none;
   cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-form__button:hover {
+  background-color: #1e4a9b;
 }

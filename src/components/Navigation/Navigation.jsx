@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
 import "./Navigation.css";
 
+import newExplorer from "/newsexplorer.svg";
 function Navigation() {
   return (
     <div className="navigation">
+      <Link to="/">
+        <img
+          className="navegation__logo"
+          src={newExplorer}
+          alt="News Explorer Logo"
+        />
+      </Link>
       <ul className="navigation__list">
         <li className="navigation__item">
           <Link to="/" className="navigation__link">
