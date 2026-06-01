@@ -3,12 +3,8 @@
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.116);
   background-color: #fff;
-  overflow: visible; /* Cambiado: permite que el tooltip sobresalga */
+  overflow: visible;
   transition: box-shadow 0.2s;
-}
-
-.news-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .news-card__image-container {
@@ -17,12 +13,10 @@
 
 .news-card__image {
   width: 100%;
-  aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
 }
 
-/* Contenedor del botón: posición absoluta sobre la imagen */
 .news-card__save-button__container {
   position: absolute;
   top: 16px;
@@ -37,17 +31,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2; /* Asegura que esté por encima de la imagen */
+  z-index: 2;
 }
 
-/* Estilos comunes para ambos iconos */
-.news-card__save-button {
-  width: 14px;
-  height: 19px;
-  display: block;
-}
-
-/* Por defecto: mostrar el icono normal, ocultar el hover */
 .news-card__save-button_default {
   display: block;
 }
@@ -55,7 +41,6 @@
   display: none;
 }
 
-/* Al hacer hover en el contenedor: ocultar normal y mostrar hover */
 .news-card__save-button__container:hover .news-card__save-button_default {
   display: none;
 }
@@ -63,19 +48,20 @@
   display: block;
 }
 
-/* Tooltip */
 .news-card__save-tooltip {
   position: absolute;
-  right: 100%; /* aparece encima del botón */
-  right: 60px;
-  margin-bottom: 8px;
-  background-color: #1a1b22;
-  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 182px;
+  height: 40px;
+  right: 45px;
+  background-color: #ffffff;
+  color: #000000;
   font-family: "Roboto", sans-serif;
-  font-size: 12px;
-  line-height: 1.4;
-  white-space: nowrap;
-  padding: 8px 12px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 100%;
   border-radius: 10px;
   opacity: 0;
   visibility: hidden;
@@ -86,7 +72,6 @@
   z-index: 10;
 }
 
-/* Mostrar el tooltip al hacer hover sobre el contenedor */
 .news-card__save-button__container:hover .news-card__save-tooltip {
   opacity: 1;
   visibility: visible;

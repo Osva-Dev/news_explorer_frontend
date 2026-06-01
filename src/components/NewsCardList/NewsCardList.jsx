@@ -1,5 +1,5 @@
+import "./NewsCardList.css";
 import NewsCard from "../NewsCard/NewsCard";
-import "./NewCardList.css";
 
 function NewsCardList({ cards, showMoreButton = false, onShowMore }) {
   return (
@@ -10,7 +10,7 @@ function NewsCardList({ cards, showMoreButton = false, onShowMore }) {
         ))}
       </div>
       {showMoreButton && (
-        <button className="news-card-list__show-more" onClick={onShowMore}>
+        <button className="news-card-list__button" onClick={onShowMore}>
           Mostrar más
         </button>
       )}
