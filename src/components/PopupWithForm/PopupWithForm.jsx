@@ -8,7 +8,7 @@ function PopupWithForm({
   buttonText,
   children,
   onSubmit,
-  onSwitch, // para cambiar entre login y registro
+  onSwitch,
   isSuccess = false,
 }) {
   // Cerrar con tecla Escape
