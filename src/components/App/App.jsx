@@ -5,8 +5,10 @@ import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
 import About from "../About/About";
-import PopupWithForm from "../PopupWithForm/PopupWithForm"; // ruta corregida
+import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import "./App.css";
+
+//Your API key is: f14b4f2892934ac8b9711d2541243e6d
 
 function App() {
   // Estados para los popups
@@ -21,7 +23,7 @@ function App() {
     setIsSuccessPopupOpen(false);
   };
 
-  // Funciones para abrir popups específicos (pasarás a Header/Navigation)
+  // Funciones para abrir popups específicos
   const handleLoginClick = () => setIsLoginPopupOpen(true);
   const handleRegisterClick = () => setIsRegisterPopupOpen(true);
 
@@ -77,9 +79,19 @@ function App() {
         onSwitch={switchToRegister}
       >
         <label className="popup-with-form__label">Correo electrónico</label>
-        <input className="popup-with-form__input" type="email" required />
+        <input
+          className="popup-with-form__input"
+          type="email"
+          placeholder="Introduce tu correo electrónico"
+          required
+        />
         <label className="popup-with-form__label">Contraseña</label>
-        <input className="popup-with-form__input" type="password" required />
+        <input
+          className="popup-with-form__input"
+          type="password"
+          placeholder="Introduce tu contraseña"
+          required
+        />
       </PopupWithForm>
 
       {/* Popup de registro */}
@@ -92,11 +104,26 @@ function App() {
         onSwitch={switchToLogin}
       >
         <label className="popup-with-form__label">Correo electrónico</label>
-        <input className="popup-with-form__input" type="email" required />
+        <input
+          className="popup-with-form__input"
+          type="email"
+          placeholder="Introduce tu correo electrónico"
+          required
+        />
         <label className="popup-with-form__label">Contraseña</label>
-        <input className="popup-with-form__input" type="password" required />
+        <input
+          className="popup-with-form__input"
+          type="password"
+          placeholder="Introduce tu contraseña"
+          required
+        />
         <label className="popup-with-form__label">Nombre de usuario</label>
-        <input className="popup-with-form__input" type="text" required />
+        <input
+          className="popup-with-form__input"
+          type="text"
+          placeholder="Introduce tu nombre de usuario"
+          required
+        />
       </PopupWithForm>
 
       {/* Popup de éxito */}
