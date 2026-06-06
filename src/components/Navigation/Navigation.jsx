@@ -1,15 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navigation.css";
-import newExplorer from "/newsexplorer.svg";
+import newsExplorer from "/newsexplorer.svg";
+import newsExplorerBlack from "/newsexplorer_black.svg";
+import logOut from "../../images/icons/logout.svg";
+import logOutBlack from "../../images/icons/logout_black.svg";
 
-function Navigation({ onLoginClick }) {
-  // ← recibe la prop
+function Navigation({ onLoginClick, currentUser, onLogout }) {
+  const location = useLocation();
+  const isSavedNewsPage = location.pathname === "/saved-news";
+
   return (
-    <div className="navigation">
+    <div
+      className={`navigation ${isSavedNewsPage ? "navigation_saved-news" : ""}`}
+    >
       <Link to="/">
         <img
-          className="navegation__logo" // Nota: tienes un typo "navegation" en lugar de "navigation"
-          src={newExplorer}
+          className="navigation__logo"
+          src={isSavedNewsPage ? newsExplorerBlack : newsExplorer}
           alt="News Explorer Logo"
         />
       </Link>
@@ -25,11 +32,22 @@ function Navigation({ onLoginClick }) {
           </Link>
         </li>
         <li className="navigation__item">
-          <button className="navigation__button" onClick={onLoginClick}>
-            {" "}
-            {/* ← añade onClick */}
-            Iniciar Sesión
-          </button>
+          {currentUser ? (
+            <button
+              className="navigation__button navigation__button_logout"
+              onClick={onLogout}
+            >
+              {currentUser.name}
+              <img
+                src={isSavedNewsPage ? logOutBlack : logOut}
+                alt="Log Out Icon"
+              />
+            </button>
+          ) : (
+            <button className="navigation__button" onClick={onLoginClick}>
+              Iniciar sesión
+            </button>
+          )}
         </li>
       </ul>
     </div>

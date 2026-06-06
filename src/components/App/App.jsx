@@ -13,7 +13,7 @@ import "./App.css";
 const PREDEFINED_USER = {
   email: "test@test.com",
   password: "123456",
-  name: "Usuario",
+  name: "Osvaldo",
 };
 
 function App() {
