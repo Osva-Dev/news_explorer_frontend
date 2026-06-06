@@ -21,19 +21,3 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-.news-card-list__button {
-  display: block;
-  width: 288px;
-  height: 64px;
-  margin: 64px auto 80px auto;
-  background-color: #e8e8e8;
-  border: 1px solid #e8e8e8;
-  border-radius: 80px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 24px;
-  text-align: center;
-  cursor: pointer;
-}

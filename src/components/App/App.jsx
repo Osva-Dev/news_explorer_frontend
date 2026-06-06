@@ -1,4 +1,5 @@
-import { useState } from "react";
+// src/components/App/App.jsx
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -6,61 +7,121 @@ import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
 import About from "../About/About";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
+import { getNews } from "../../utils/ThirdPartyApi.js";
 import "./App.css";
 
-//Your API key is: f14b4f2892934ac8b9711d2541243e6d
-
 function App() {
-  // Estados para los popups
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
 
-  // Función para cerrar todos los popups
+  const [searchResults, setSearchResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [searchError, setSearchError] = useState("");
+  const [searchKeyword, setSearchKeyword] = useState("");
+
   const closeAllPopups = () => {
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(false);
     setIsSuccessPopupOpen(false);
   };
-
-  // Funciones para abrir popups específicos
   const handleLoginClick = () => setIsLoginPopupOpen(true);
-  const handleRegisterClick = () => setIsRegisterPopupOpen(true);
-
-  // Manejadores de envío (por ahora solo cierran y abren éxito)
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    // Aquí irá la petición a la API de login
     closeAllPopups();
   };
-
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
-    // Aquí irá la petición a la API de registro
     closeAllPopups();
-    setIsSuccessPopupOpen(true); // muestra mensaje de éxito
+    setIsSuccessPopupOpen(true);
   };
-
-  // Funciones para cambiar entre login y registro
   const switchToRegister = () => {
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(true);
   };
-
   const switchToLogin = () => {
     setIsRegisterPopupOpen(false);
     setIsLoginPopupOpen(true);
   };
 
+  const handleSearch = async (keyword) => {
+    if (!keyword.trim()) {
+      alert("Por favor, introduce una palabra clave");
+      return;
+    }
+
+    setIsLoading(true);
+    setSearchError("");
+    setSearchKeyword(keyword);
+
+    try {
+      const today = new Date();
+      const sevenDaysAgo = new Date();
+      sevenDaysAgo.setDate(today.getDate() - 7);
+      const from = sevenDaysAgo.toISOString().split("T")[0];
+      const to = today.toISOString().split("T")[0];
+
+      const articles = await getNews({ keyword, from, to, pageSize: 100 });
+
+      const formattedArticles = articles.map((article, index) => ({
+        id: index,
+        image:
+          article.urlToImage ||
+          "https://via.placeholder.com/400x272?text=No+Image",
+        date: new Date(article.publishedAt).toLocaleDateString("es-ES", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
+        title: article.title,
+        description: article.description || "Sin descripción",
+        source: article.source.name,
+      }));
+
+      setSearchResults(formattedArticles);
+      localStorage.setItem(
+        "cachedNews",
+        JSON.stringify({
+          keyword,
+          articles: formattedArticles,
+          timestamp: Date.now(),
+        }),
+      );
+    } catch (err) {
+      setSearchError(
+        "Lo sentimos, algo ha salido mal durante la solicitud. Es posible que haya un problema de conexión o que el servidor no funcione. Por favor, inténtalo más tarde.",
+      );
+      setSearchResults([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const cached = localStorage.getItem("cachedNews");
+    if (cached) {
+      const { keyword, articles, timestamp } = JSON.parse(cached);
+      if (Date.now() - timestamp < 30 * 60 * 1000) {
+        setSearchKeyword(keyword);
+        setSearchResults(articles);
+      }
+    }
+  }, []);
+
   return (
     <>
-      <Header onLoginClick={handleLoginClick} />
+      <Header onLoginClick={handleLoginClick} onSearch={handleSearch} />
       <Routes>
         <Route
           path="/"
           element={
             <>
-              <Main />
+              <Main
+                searchResults={searchResults}
+                isLoading={isLoading}
+                searchError={searchError}
+                searchKeyword={searchKeyword}
+              />
               <About />
             </>
           }
@@ -69,7 +130,6 @@ function App() {
       </Routes>
       <Footer />
 
-      {/* Popup de inicio de sesión */}
       <PopupWithForm
         isOpen={isLoginPopupOpen}
         onClose={closeAllPopups}
@@ -94,7 +154,6 @@ function App() {
         />
       </PopupWithForm>
 
-      {/* Popup de registro */}
       <PopupWithForm
         isOpen={isRegisterPopupOpen}
         onClose={closeAllPopups}
@@ -126,7 +185,6 @@ function App() {
         />
       </PopupWithForm>
 
-      {/* Popup de éxito */}
       <PopupWithForm
         isOpen={isSuccessPopupOpen}
         onClose={closeAllPopups}
