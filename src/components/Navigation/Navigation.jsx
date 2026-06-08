@@ -26,11 +26,14 @@ function Navigation({ onLoginClick, currentUser, onLogout }) {
             Inicio
           </Link>
         </li>
-        <li className="navigation__item">
-          <Link to="/saved-news" className="navigation__link">
-            Artículos Guardados
-          </Link>
-        </li>
+        {/* Solo mostrar "Artículos Guardados" si el usuario está logueado */}
+        {currentUser && (
+          <li className="navigation__item">
+            <Link to="/saved-news" className="navigation__link">
+              Artículos Guardados
+            </Link>
+          </li>
+        )}
         <li className="navigation__item">
           {currentUser ? (
             <button
