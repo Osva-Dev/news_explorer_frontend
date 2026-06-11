@@ -1,4 +1,4 @@
-/* Bloque search-form */
+/* ========== ESTILOS BASE (Desktop) ========== */
 .search-form {
   display: flex;
   flex-direction: column;
@@ -53,7 +53,7 @@
   line-height: 24px;
   font-weight: 500;
   width: 168px;
-  height: 64px;
+  height: 66px;
   border-radius: 100px;
   border: none;
   cursor: pointer;
@@ -62,4 +62,52 @@
 
 .search-form__button:hover {
   background-color: #1e4a9b;
+}
+
+.search-form__error {
+  color: #ff4d4d;
+  font-size: 14px;
+  margin-top: -50px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .search-form {
+    max-width: 452px;
+    margin-top: 38px;
+  }
+
+  .search-form__title {
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 16px;
+  }
+
+  .search-form__subtitle {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 48px;
+  }
+
+  .search-form__field {
+    margin-bottom: 48px;
+  }
+
+  .search-form__input {
+    height: 56px;
+    padding: 0 20px;
+    font-size: 16px;
+  }
+
+  .search-form__button {
+    width: 160px;
+    height: 58px;
+    font-size: 16px;
+  }
+
+  .search-form__error {
+    margin-top: -42px;
+    font-size: 13px;
+  }
 }
