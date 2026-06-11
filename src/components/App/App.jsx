@@ -13,7 +13,7 @@ import "./App.css";
 const PREDEFINED_USER = {
   email: "test@test.com",
   password: "123456",
-  name: "Osvaldo",
+  name: "Elise",
 };
 
 function App() {
@@ -57,7 +57,6 @@ function App() {
       setCurrentUser(user);
       localStorage.setItem("currentUser", JSON.stringify(user));
       closeAllPopups();
-      // Mostrar popup de éxito con mensaje de login
       setSuccessMessage("Inicio de sesión exitoso");
       setIsSuccessPopupOpen(true);
     } else {
@@ -66,13 +65,10 @@ function App() {
   };
 
   const handleRegister = (email, password, name) => {
-    // Simulación de registro exitoso
     alert("Registro exitoso. Ahora inicia sesión.");
     closeAllPopups();
     setSuccessMessage("¡El registro se ha completado con éxito!");
     setIsSuccessPopupOpen(true);
-    // Opcional: abrir login automáticamente después de ver el éxito
-    // pero mejor que el usuario haga clic en "Iniciar sesión" del popup de éxito.
   };
 
   const handleLogout = () => {
@@ -235,7 +231,6 @@ function App() {
         />
       </PopupWithForm>
 
-      {/* Popup de registro */}
       <PopupWithForm
         isOpen={isRegisterPopupOpen}
         onClose={closeAllPopups}
@@ -268,7 +263,6 @@ function App() {
         />
       </PopupWithForm>
 
-      {/* Popup de éxito (genérico, con mensaje dinámico) */}
       <PopupWithForm
         isOpen={isSuccessPopupOpen}
         onClose={closeAllPopups}
