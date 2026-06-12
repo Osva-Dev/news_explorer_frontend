@@ -1,13 +1,22 @@
 import "./Header.css";
-import { Link } from "react-router-dom";
-import SearchForm from "../SearchForm/SearchForm";
+import { useLocation } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
+import SearchForm from "../SearchForm/SearchForm";
 
-function Header({ onLoginClick, onSearch }) {
+function Header({ onLoginClick, onSearch, currentUser, onLogout }) {
+  const location = useLocation();
+  const isSavedNewsPage = location.pathname === "/saved-news";
+
   return (
-    <header className="header">
-      <Navigation onLoginClick={onLoginClick} />
-      <SearchForm onSearch={onSearch} />
+    <header
+      className={`header ${isSavedNewsPage ? "header_no-background" : ""}`}
+    >
+      <Navigation
+        onLoginClick={onLoginClick}
+        currentUser={currentUser}
+        onLogout={onLogout}
+      />
+      {!isSavedNewsPage && <SearchForm onSearch={onSearch} />}
     </header>
   );
 }

@@ -6,3 +6,10 @@
   background-size: cover;
   background-position: center;
 }
+
+.header_no-background {
+  height: 0px;
+  background-image: none;
+  background-color: #fff;
+  margin-bottom: 140px;
+}

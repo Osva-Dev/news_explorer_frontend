@@ -7,41 +7,87 @@ import Main from "../Main/Main";
 import SavedNews from "../SavedNews/SavedNews";
 import About from "../About/About";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
-import { getNews } from "../../utils/ThirdPartyApi.js";
+import { getNews } from "../../utils/ThirdPartyApi";
 import "./App.css";
+
+const PREDEFINED_USER = {
+  email: "test@test.com",
+  password: "123456",
+  name: "Osvaldo",
+};
 
 function App() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const [currentUser, setCurrentUser] = useState(null);
+  const [savedArticles, setSavedArticles] = useState([]);
 
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchError, setSearchError] = useState("");
   const [searchKeyword, setSearchKeyword] = useState("");
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("currentUser");
+    if (storedUser) setCurrentUser(JSON.parse(storedUser));
+    const storedArticles = localStorage.getItem("savedArticles");
+    if (storedArticles) setSavedArticles(JSON.parse(storedArticles));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("savedArticles", JSON.stringify(savedArticles));
+  }, [savedArticles]);
+
   const closeAllPopups = () => {
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(false);
     setIsSuccessPopupOpen(false);
+    setSuccessMessage("");
   };
-  const handleLoginClick = () => setIsLoginPopupOpen(true);
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    closeAllPopups();
+
+  const handleLogin = (email, password) => {
+    if (
+      email === PREDEFINED_USER.email &&
+      password === PREDEFINED_USER.password
+    ) {
+      const user = { email: PREDEFINED_USER.email, name: PREDEFINED_USER.name };
+      setCurrentUser(user);
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      closeAllPopups();
+      // Mostrar popup de éxito con mensaje de login
+      setSuccessMessage("Inicio de sesión exitoso");
+      setIsSuccessPopupOpen(true);
+    } else {
+      alert("Credenciales incorrectas. Usa: test@test.com / 123456");
+    }
   };
-  const handleRegisterSubmit = (e) => {
-    e.preventDefault();
+
+  const handleRegister = (email, password, name) => {
+    // Simulación de registro exitoso
+    alert("Registro exitoso. Ahora inicia sesión.");
     closeAllPopups();
+    setSuccessMessage("¡El registro se ha completado con éxito!");
     setIsSuccessPopupOpen(true);
+    // Opcional: abrir login automáticamente después de ver el éxito
+    // pero mejor que el usuario haga clic en "Iniciar sesión" del popup de éxito.
   };
-  const switchToRegister = () => {
-    setIsLoginPopupOpen(false);
-    setIsRegisterPopupOpen(true);
+
+  const handleLogout = () => {
+    setCurrentUser(null);
+    localStorage.removeItem("currentUser");
   };
-  const switchToLogin = () => {
-    setIsRegisterPopupOpen(false);
-    setIsLoginPopupOpen(true);
+
+  const handleSaveArticle = (article) => {
+    if (!currentUser) return;
+    if (savedArticles.some((a) => a.id === article.id)) return;
+    setSavedArticles([...savedArticles, article]);
+  };
+
+  const handleDeleteArticle = (articleId) => {
+    setSavedArticles(savedArticles.filter((a) => a.id !== articleId));
   };
 
   const handleSearch = async (keyword) => {
@@ -49,22 +95,18 @@ function App() {
       alert("Por favor, introduce una palabra clave");
       return;
     }
-
     setIsLoading(true);
     setSearchError("");
     setSearchKeyword(keyword);
-
     try {
       const today = new Date();
       const sevenDaysAgo = new Date();
       sevenDaysAgo.setDate(today.getDate() - 7);
       const from = sevenDaysAgo.toISOString().split("T")[0];
       const to = today.toISOString().split("T")[0];
-
       const articles = await getNews({ keyword, from, to, pageSize: 100 });
-
       const formattedArticles = articles.map((article, index) => ({
-        id: index,
+        id: article.url || index,
         image:
           article.urlToImage ||
           "https://via.placeholder.com/400x272?text=No+Image",
@@ -77,7 +119,6 @@ function App() {
         description: article.description || "Sin descripción",
         source: article.source.name,
       }));
-
       setSearchResults(formattedArticles);
       localStorage.setItem(
         "cachedNews",
@@ -88,9 +129,7 @@ function App() {
         }),
       );
     } catch (err) {
-      setSearchError(
-        "Lo sentimos, algo ha salido mal durante la solicitud. Es posible que haya un problema de conexión o que el servidor no funcione. Por favor, inténtalo más tarde.",
-      );
+      setSearchError("Lo sentimos, algo ha salido mal...");
       setSearchResults([]);
     } finally {
       setIsLoading(false);
@@ -108,9 +147,36 @@ function App() {
     }
   }, []);
 
+  const handleLoginClick = () => setIsLoginPopupOpen(true);
+
+  const handleLoginSubmit = (e, email, password) => {
+    e.preventDefault();
+    handleLogin(email, password);
+  };
+
+  const handleRegisterSubmit = (e, email, password, name) => {
+    e.preventDefault();
+    handleRegister(email, password, name);
+  };
+
+  const switchToRegister = () => {
+    setIsLoginPopupOpen(false);
+    setIsRegisterPopupOpen(true);
+  };
+
+  const switchToLogin = () => {
+    setIsRegisterPopupOpen(false);
+    setIsLoginPopupOpen(true);
+  };
+
   return (
     <>
-      <Header onLoginClick={handleLoginClick} onSearch={handleSearch} />
+      <Header
+        onLoginClick={handleLoginClick}
+        onSearch={handleSearch}
+        currentUser={currentUser}
+        onLogout={handleLogout}
+      />
       <Routes>
         <Route
           path="/"
@@ -121,15 +187,29 @@ function App() {
                 isLoading={isLoading}
                 searchError={searchError}
                 searchKeyword={searchKeyword}
+                currentUser={currentUser}
+                savedArticles={savedArticles}
+                onSaveArticle={handleSaveArticle}
+                onDeleteArticle={handleDeleteArticle}
               />
               <About />
             </>
           }
         />
-        <Route path="/saved-news" element={<SavedNews />} />
+        <Route
+          path="/saved-news"
+          element={
+            <SavedNews
+              savedArticles={savedArticles}
+              currentUser={currentUser}
+              onDeleteArticle={handleDeleteArticle}
+            />
+          }
+        />
       </Routes>
       <Footer />
 
+      {/* Popup de login */}
       <PopupWithForm
         isOpen={isLoginPopupOpen}
         onClose={closeAllPopups}
@@ -137,6 +217,7 @@ function App() {
         buttonText="Iniciar sesión"
         onSubmit={handleLoginSubmit}
         onSwitch={switchToRegister}
+        type="login"
       >
         <label className="popup-with-form__label">Correo electrónico</label>
         <input
@@ -154,6 +235,7 @@ function App() {
         />
       </PopupWithForm>
 
+      {/* Popup de registro */}
       <PopupWithForm
         isOpen={isRegisterPopupOpen}
         onClose={closeAllPopups}
@@ -161,6 +243,7 @@ function App() {
         buttonText="Inscribirse"
         onSubmit={handleRegisterSubmit}
         onSwitch={switchToLogin}
+        type="register"
       >
         <label className="popup-with-form__label">Correo electrónico</label>
         <input
@@ -185,12 +268,14 @@ function App() {
         />
       </PopupWithForm>
 
+      {/* Popup de éxito (genérico, con mensaje dinámico) */}
       <PopupWithForm
         isOpen={isSuccessPopupOpen}
         onClose={closeAllPopups}
         title=""
         buttonText=""
         isSuccess={true}
+        successMessage={successMessage}
       />
     </>
   );

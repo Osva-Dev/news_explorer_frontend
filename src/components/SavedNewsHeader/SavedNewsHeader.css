@@ -1,6 +1,7 @@
 .saved-news-header {
   max-width: 580px;
   width: 100%;
+  margin-top: 0px;
   margin-left: 104px;
   margin-right: 104px;
   text-align: left;
@@ -11,6 +12,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
+  color: #1a1b2280;
 }
 
 .saved-news-header__title {
