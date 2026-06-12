@@ -41,9 +41,23 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-  border-color: white;
   border: 1px solid white;
   cursor: pointer;
+}
+
+.navigation__button_logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.navigation__logout-icon {
+  margin-left: 15px;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 .navigation__link:after {
@@ -87,4 +101,32 @@
   gap: 8px;
   color: #1a1b22;
   border-color: #1a1b22;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .navigation__logo {
+    width: 200px;
+    height: 24.8px;
+    margin-left: 40px;
+  }
+
+  .navigation__list {
+    gap: 16px;
+    margin-right: 40px;
+  }
+
+  .navigation__link {
+    font-size: 16px;
+    padding: 8px 6px;
+  }
+
+  .navigation__link:after {
+    bottom: -18px;
+  }
+
+  .navigation__button {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+  }
 }
