@@ -32,14 +32,14 @@
 }
 
 .navigation__button {
-  width: 176px;
-  height: 48px;
+  width: 152px;
+  height: 40px;
   border-radius: 100px;
   background-color: rgba(0, 0, 0, 0);
   color: white;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
   border: 1px solid white;
   cursor: pointer;
@@ -122,11 +122,5 @@
 
   .navigation__link:after {
     bottom: -18px;
-  }
-
-  .navigation__button {
-    width: 100px;
-    height: 40px;
-    font-size: 16px;
   }
 }
