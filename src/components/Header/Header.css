@@ -1,5 +1,5 @@
 .header {
-  height: 576px;
+  min-height: 576px;
   background-image:
     linear-gradient(rgba(0, 0, 0, 0.384)),
     url("../../images/principal_image.jpg");
@@ -17,5 +17,17 @@
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .header {
     height: 400px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header {
+    min-height: auto;
+    padding-bottom: 40px;
+  }
+
+  .header_no-background {
+    height: auto;
+    margin-bottom: 0;
   }
 }
