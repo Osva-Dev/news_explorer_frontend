@@ -24,6 +24,8 @@
   .header {
     min-height: auto;
     padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
   }
 
   .header_no-background {

@@ -4,6 +4,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 19px;
+  padding-bottom: 13px;
 }
 
 .navigation__logo {
@@ -103,8 +105,11 @@
   border-color: #1a1b22;
 }
 
+/* ========== TABLET ========== */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .navigation__logo {
+    align-items: none;
+    justify-content: none;
     width: 200px;
     height: 24.8px;
     margin-left: 40px;
@@ -128,5 +133,188 @@
     width: 152px;
     height: 40px;
     font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .navigation {
+    width: 100%;
+    margin: 0;
+    padding: 16px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navigation_saved-news {
+    background-color: white;
+  }
+
+  .navigation__logo {
+    margin-left: 0;
+    width: 160px;
+    height: auto;
+  }
+
+  .navigation__list {
+    width: 100%;
+    margin-left: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .navigation__item {
+    width: 100%;
+  }
+
+  .navigation__item:last-child {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navigation__link {
+    padding: 0;
+  }
+
+  .navigation__link:after {
+    display: none;
+  }
+
+  .navigation__button {
+    height: 55px;
+    max-width: 767px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.navigation_mobile {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .navigation_desktop {
+    display: none;
+  }
+  .navigation_mobile {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .navigation_mobile {
+    width: 100%;
+    margin: 0;
+    padding: 16px 0;
+    border-bottom: none;
+    background-color: transparent !important;
+    transition: background-color 0.3s ease;
+  }
+
+  .navigation_mobile.navigation_mobile_open {
+    background-color: #1a1b22 !important;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .navigation_saved-news.navigation_mobile {
+    background-color: transparent !important;
+  }
+
+  .navigation_saved-news.navigation_mobile.navigation_mobile_open {
+    background-color: white !important;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .navigation__mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px 13px 20px;
+    border-bottom: 2px solid #ffffff1c;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .navigation_saved-news .navigation__mobile-header {
+    border-bottom-color: #d1d2d6;
+  }
+
+  .navigation__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .navigation__burger-line {
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    transition: 0.3s;
+  }
+
+  .navigation_saved-news .navigation__burger-line {
+    background-color: #1a1b22;
+  }
+
+  .navigation__burger-line.open:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  .navigation__burger-line.open:nth-child(2) {
+    opacity: 0;
+  }
+  .navigation__burger-line.open:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .navigation__list_mobile {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    margin: 24px 20px 0 20px;
+    padding: 0 0 20px 0;
+    list-style: none;
+  }
+
+  .navigation__list_mobile_open {
+    display: flex;
+  }
+
+  .navigation_mobile .navigation__logo {
+    margin-left: 0;
+    width: 160px;
+    height: auto;
+  }
+
+  .navigation_mobile .navigation__item {
+    width: 100%;
+  }
+
+  .navigation_mobile .navigation__item:last-child {
+    display: flex;
+    justify-content: center;
+  }
+
+  .navigation_mobile .navigation__link {
+    padding: 0;
+    color: white;
+  }
+
+  .navigation_saved-news .navigation_mobile .navigation__link {
+    color: #1a1b22;
+  }
+
+  .navigation_mobile .navigation__button {
+    width: 100%;
+    max-width: 288px;
+    height: 55px;
+    margin: 0 auto;
   }
 }
