@@ -26,5 +26,6 @@
   .news-card-list__container {
     grid-template-columns: 1fr;
     gap: 12px;
+    justify-items: center;
   }
 }
