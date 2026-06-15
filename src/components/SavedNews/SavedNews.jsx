@@ -1,7 +1,7 @@
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 
 function SavedNews() {
-  const savedCards = []; // aquí las tarjetas guardadas
+  const savedCards = [];
   const userName = "Elise";
   const savedCount = 5;
   const keywords = ["Naturaleza", "Yellowstone", "y 2 más"];
