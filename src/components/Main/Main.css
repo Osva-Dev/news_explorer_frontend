@@ -26,8 +26,8 @@
   width: 288px;
   height: 64px;
   margin: 64px auto 80px auto;
-  background-color: #e8e8e8;
-  border: 1px solid #e8e8e8;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
   border-radius: 80px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -35,6 +35,42 @@
   line-height: 24px;
   text-align: center;
   cursor: pointer;
+}
+
+.main__nothing-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 86px;
+  margin-bottom: 80px;
+  padding: 40px 20px;
+  background-color: #f5f6f7;
+}
+
+.main__nothing-found-icon {
+  font-size: 64px;
+  margin-bottom: 31.5px;
+  height: 82.5px;
+  width: 82.5px;
+}
+
+.main__nothing-found-title {
+  font-family: "Roboto Slab", serif;
+  font-size: 26px;
+  line-height: 30px;
+  color: #1a1b22;
+  margin: 0 0 16px 0;
+}
+
+.main__nothing-found-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+  max-width: 400px;
+  margin: 0;
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {

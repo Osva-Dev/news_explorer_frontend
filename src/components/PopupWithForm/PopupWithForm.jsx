@@ -1,4 +1,3 @@
-// src/components/PopupWithForm/PopupWithForm.jsx
 import { useEffect } from "react";
 import "./PopupWithForm.css";
 
@@ -29,17 +28,15 @@ function PopupWithForm({
     if (e.target === e.currentTarget) onClose();
   };
 
-  // Para los formularios, capturar valores de inputs
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (onSubmit) {
-      // Si es login o registro, extraemos los valores de los inputs
       const inputs = e.target.querySelectorAll("input");
       const values = Array.from(inputs).map((input) => input.value);
       if (title === "Iniciar sesión") {
-        onSubmit(e, values[0], values[1]); // email, password
+        onSubmit(e, values[0], values[1]);
       } else if (title === "Inscribirse") {
-        onSubmit(e, values[0], values[1], values[2]); // email, password, name
+        onSubmit(e, values[0], values[1], values[2]);
       } else {
         onSubmit(e);
       }
