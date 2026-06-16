@@ -1,9 +1,9 @@
 .footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 80px;
-  height: 1140px;
-  height: 100%;
+  align-items: center;
+  margin-top: 24px;
+  height: 64px;
   margin-left: 104px;
   margin-right: 104px;
   margin-bottom: 26px;
