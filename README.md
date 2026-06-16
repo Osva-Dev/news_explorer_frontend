@@ -106,7 +106,7 @@ La aplicación se adapta a diferentes tamaños de pantalla:
 - **Desarrollador**: Osvaldo Ochoa
 - **Diseño**: Basado en el UI Kit de TripleTen (Figma)
 - **API de noticias**: News API (newsapi.org)
-- **Sitio Web**: [text](https://osva-dev.github.io/news_explorer_frontend/)
+- **Sitio Web**: [https://osva-dev.github.io/news_explorer_frontend/](https://osva-dev.github.io/news_explorer_frontend/)
 
 ---
 
