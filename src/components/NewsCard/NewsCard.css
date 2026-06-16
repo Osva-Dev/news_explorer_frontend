@@ -184,3 +184,19 @@
     right: 38px;
   }
 }
+
+/* Estilo para la palabra clave en la esquina superior izquierda (solo en saved-news) */
+.news-card__keyword {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: #fff;
+  color: #1a1b22;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

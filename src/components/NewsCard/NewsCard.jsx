@@ -1,31 +1,61 @@
 import "./NewsCard.css";
-
 import saveIcon from "../../images/icons/save.svg";
 import saveIconHover from "../../images/icons/save-hover.svg";
+import deleteIcon from "../../images/icons/trash.svg"; // Asegúrate de tener este archivo
+import deleteIconHover from "../../images/icons/trash_hover.svg"; // Opcional
 
-function NewsCard({ image, date, title, description, source }) {
+function NewsCard({
+  image,
+  date,
+  title,
+  description,
+  source,
+  keyword,
+  isSavedPage,
+  onDelete,
+}) {
+  // Para depurar: muestra en consola si la tarjeta está en modo saved
+  console.log("NewsCard - isSavedPage:", isSavedPage, "keyword:", keyword);
+
   return (
     <div className="news-card">
       <div className="news-card__image-container">
-        <img
-          className="news-card__image"
-          src={image}
-          alt="Perro en naturaleza"
-        />
+        <img className="news-card__image" src={image} alt={title} />
+        {isSavedPage && keyword && (
+          <div className="news-card__keyword">{keyword}</div>
+        )}
         <div className="news-card__save-button__container">
-          <img
-            className="news-card__save-button news-card__save-button_default"
-            src={saveIcon}
-            alt="Save"
-          />
-          <img
-            className="news-card__save-button news-card__save-button_hover"
-            src={saveIconHover}
-            alt="Save hover"
-          />
-          <span className="news-card__save-tooltip">
-            Inicia sesión para guardar artículos
-          </span>
+          {!isSavedPage ? (
+            <>
+              <img
+                className="news-card__save-button news-card__save-button_default"
+                src={saveIcon}
+                alt="Save"
+              />
+              <img
+                className="news-card__save-button news-card__save-button_hover"
+                src={saveIconHover}
+                alt="Save hover"
+              />
+              <span className="news-card__save-tooltip">
+                Inicia sesión para guardar artículos
+              </span>
+            </>
+          ) : (
+            <>
+              <img
+                className="news-card__save-button news-card__save-button_default"
+                src={deleteIcon}
+                alt="Delete"
+              />
+              <img
+                className="news-card__save-button news-card__save-button_hover"
+                src={deleteIconHover}
+                alt="Delete hover"
+              />
+              <span className="news-card__save-tooltip">Remove from saved</span>
+            </>
+          )}
         </div>
       </div>
       <div className="news-card__container">

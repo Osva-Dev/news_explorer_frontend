@@ -105,7 +105,6 @@
   border-color: #1a1b22;
 }
 
-/* ========== TABLET ========== */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .navigation__logo {
     align-items: none;
@@ -307,7 +306,7 @@
     color: white;
   }
 
-  .navigation_saved-news .navigation_mobile .navigation__link {
+  .navigation_saved-news .navigation__link {
     color: #1a1b22;
   }
 
