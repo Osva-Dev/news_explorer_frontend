@@ -61,14 +61,6 @@ npm run dev
 - El login/registro se simula con `localStorage` (no hay backend real en esta versión).
 - Al cerrar sesión, la interfaz vuelve al estado inicial (sin artículos guardados visibles).
 
-### Guardar artículos
-
-- Solo los usuarios autenticados pueden guardar artículos.
-- El icono de guardar (ubicado en la esquina superior derecha de cada tarjeta) cambia de color cuando el artículo está guardado.
-- Si el usuario no está autenticado, al pasar el cursor sobre el icono aparece el tooltip: _"Inicia sesión para guardar artículos"_.
-- Los artículos guardados se almacenan en `localStorage` y se muestran en la página `/saved-news`.
-- Desde allí, se pueden eliminar con el icono de papelera (también ubicado en la esquina superior derecha de cada tarjeta).
-
 ### Página de artículos guardados
 
 - Muestra un resumen con:
@@ -114,6 +106,7 @@ La aplicación se adapta a diferentes tamaños de pantalla:
 - **Desarrollador**: Osvaldo Ochoa
 - **Diseño**: Basado en el UI Kit de TripleTen (Figma)
 - **API de noticias**: News API (newsapi.org)
+- **Sitio Web**: [text](https://osva-dev.github.io/news_explorer_frontend/)
 
 ---
 
