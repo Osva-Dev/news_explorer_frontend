@@ -1,8 +1,8 @@
 import "./NewsCard.css";
 import saveIcon from "../../images/icons/save.svg";
 import saveIconHover from "../../images/icons/save-hover.svg";
-import deleteIcon from "../../images/icons/trash.svg"; // Asegúrate de tener este archivo
-import deleteIconHover from "../../images/icons/trash_hover.svg"; // Opcional
+import deleteIcon from "../../images/icons/trash.svg";
+import deleteIconHover from "../../images/icons/trash_hover.svg";
 
 function NewsCard({
   image,
@@ -14,9 +14,6 @@ function NewsCard({
   isSavedPage,
   onDelete,
 }) {
-  // Para depurar: muestra en consola si la tarjeta está en modo saved
-  console.log("NewsCard - isSavedPage:", isSavedPage, "keyword:", keyword);
-
   return (
     <div className="news-card">
       <div className="news-card__image-container">
