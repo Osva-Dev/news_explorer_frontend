@@ -70,7 +70,6 @@ function SavedNews() {
 
   return (
     <main className="saved-news">
-      {/* Contenedor exclusivo para el header (sin fondo gris) */}
       <div className="saved-news__header-container">
         <div className="saved-news__header-content">
           <SavedNewsHeader
@@ -81,7 +80,6 @@ function SavedNews() {
         </div>
       </div>
 
-      {/* Contenedor exclusivo para las tarjetas (con fondo gris) */}
       <div className="saved-news__cards-container">
         <div className="saved-news__cards-content">
           <NewsCardList cards={savedCards} isSavedPage={true} />
