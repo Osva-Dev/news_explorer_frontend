@@ -1,6 +1,6 @@
 // src/components/App/App.jsx
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom"; // ← añadido Navigate y useNavigate
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
@@ -16,6 +16,15 @@ import {
   deleteSavedArticle,
 } from "../../utils/MainApi";
 import "./App.css";
+
+// ===== COMPONENTE PROTECTED ROUTE =====
+function ProtectedRoute({ isLoggedIn, children }) {
+  if (!isLoggedIn) {
+    return <Navigate to="/" replace />;
+  }
+  return children;
+}
+// =======================================
 
 function InfoTooltip({ isOpen, onClose, title, message }) {
   useEffect(() => {
@@ -63,6 +72,8 @@ function InfoTooltip({ isOpen, onClose, title, message }) {
 }
 
 function App() {
+  const navigate = useNavigate(); // ← para redirigir en logout
+
   // Estados para popups
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
@@ -86,7 +97,6 @@ function App() {
     const storedUser = localStorage.getItem("currentUser");
     if (storedUser) {
       const user = JSON.parse(storedUser);
-      // Verificar si el usuario aún existe en mockapi.io
       fetch(`https://6a371f6ac105017aa638c910.mockapi.io/users/${user.id}`)
         .then((res) => {
           if (!res.ok) {
@@ -96,7 +106,6 @@ function App() {
         })
         .then((validUser) => {
           setCurrentUser(validUser);
-          // Cargar sus artículos guardados
           return getSavedArticles(validUser.id);
         })
         .then((articles) => {
@@ -158,6 +167,7 @@ function App() {
     setCurrentUser(null);
     setSavedArticles([]);
     localStorage.removeItem("currentUser");
+    navigate("/"); // ← redirige a inicio
   };
 
   // --- Guardar y eliminar artículos ---
@@ -293,17 +303,19 @@ function App() {
         <Route
           path="/saved-news"
           element={
-            <SavedNews
-              savedArticles={savedArticles}
-              currentUser={currentUser}
-              onDeleteArticle={handleDeleteArticle}
-            />
+            <ProtectedRoute isLoggedIn={!!currentUser}>
+              <SavedNews
+                savedArticles={savedArticles}
+                currentUser={currentUser}
+                onDeleteArticle={handleDeleteArticle}
+              />
+            </ProtectedRoute>
           }
         />
       </Routes>
       <Footer />
 
-      {/* Popups ... (sin cambios) */}
+      {/* Popups (sin cambios) */}
       <PopupWithForm
         isOpen={isLoginPopupOpen}
         onClose={closeAllPopups}
