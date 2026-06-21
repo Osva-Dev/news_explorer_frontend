@@ -1,17 +1,19 @@
 # 📰 News Explorer - Frontend
 
-Aplicación web para explorar noticias, guardar artículos favoritos y gestionar tu contenido personalizado. Desarrollada con React y Vite, integra la API de noticias de terceros (News API) para obtener información actualizada.
-
----
+Aplicación web para explorar noticias, guardar artículos favoritos y gestionar tu contenido personalizado. Desarrollada con React y Vite, integra la API de noticias de terceros (News API) para obtener información actualizada y utiliza mockapi.io para la autenticación y persistencia de datos.
 
 ## 🚀 Características principales
 
 - **Búsqueda de noticias**: Encuentra artículos por palabra clave utilizando la API de noticias.
+- **Autenticación real**: Registro e inicio de sesión con almacenamiento en mockapi.io (sin datos hardcodeados).
 - **Página de artículos guardados**: Visualiza, organiza y elimina tus artículos guardados.
 - **Diseño responsive**: Adaptado a dispositivos móviles, tablets y escritorio según los diseños de Figma.
 - **Interfaz moderna**: Construida con componentes reutilizables y metodología BEM apartir de un diseño de Figma.
 - **Rutas dinámicas**: Navegación entre la página principal (`/`) y la página de artículos guardados (`/saved-news`).
+- **Protección de rutas**: La página de artículos guardados está protegida y redirige al inicio si el usuario no está autenticado.
 - **Preloader y manejo de estados**: Carga, errores y mensajes de "No se encontró nada" gestionados con `useState` y `useEffect`.
+- **Menú "hamburguesa"**: Navegación responsiva con icono de hamburguesa que se transforma en "X" al abrir el menú en dispositivos móviles.
+  -- **Persistencia de datos**: Los artículos guardados y la sesión de usuario se mantienen al recargar la página gracias a localStorage y la sincronización con mockapi.io.
 
 ---
 
@@ -22,7 +24,7 @@ Aplicación web para explorar noticias, guardar artículos favoritos y gestionar
 - **React Router DOM** (enrutamiento)
 - **CSS Modules / BEM** (estilos modulares)
 - **Fetch API** (solicitudes a News API)
-- **localStorage** (persistencia de sesión mock y artículos guardados)
+- **Mockapi.io** (backend mock para autenticación y guardado de artículos)
 - **News API** (consumo de noticias)
 
 ---
@@ -52,24 +54,21 @@ npm run dev
 - Si no se encuentran resultados, se muestra un mensaje personalizado con el texto: _"No se encontró nada"_.
 - En caso de error en la API, se muestra un mensaje claro indicando el problema.
 
-### Autenticación simulada (mock)
+### Autenticación Real
 
-- Usuario predefinido: `test@test.com` / `123456`.
-- Al iniciar sesión, se muestra el nombre del usuario y la interfaz cambia:
+- El registro y el inicio de sesión se gestionan a través de mockapi.io.
+- Los usuarios se almacenan en el recurso users de mockapi.io.
+  Al iniciar sesión, se muestra el nombre del usuario y la interfaz cambia:
   - Aparece el enlace **"Artículos Guardados"** en el menú de navegación.
   - El botón **"Iniciar sesión"** se reemplaza por el nombre del usuario y un botón de **logout**.
 - El login/registro se simula con `localStorage` (no hay backend real en esta versión).
-- Al cerrar sesión, la interfaz vuelve al estado inicial (sin artículos guardados visibles).
+- Al cerrar sesión, se redirige a la página principal y se limpia la sesión.
 
 ### Página de artículos guardados
 
-- Muestra un resumen con:
-  - El nombre del usuario.
-  - El número total de artículos guardados.
-  - Las palabras clave asociadas a los artículos guardados (extraídas automáticamente).
-- Las tarjetas incluyen:
-  - La etiqueta de la palabra clave (arriba a la izquierda).
-  - Un icono de eliminar (arriba a la derecha) que al hacer clic borra el artículo de la lista y del `localStorage`.
+- Solo accesible para usuarios autenticados (redirige a / si no hay sesión).
+- Muestra un resumen con el nombre del usuario, el número total de artículos guardados y las palabras clave asociadas.
+- Las tarjetas incluyen la etiqueta de la palabra clave (arriba a la izquierda) y un icono de eliminar (arriba a la derecha) que borra el artículo de la lista y de mockapi.io.
 - Diseño idéntico al de la página principal (grid de 3 columnas en desktop, 2 en tablet y 1 en móvil).
 
 ### Modales interactivos
@@ -106,6 +105,7 @@ La aplicación se adapta a diferentes tamaños de pantalla:
 - **Desarrollador**: Osvaldo Ochoa
 - **Diseño**: Basado en el UI Kit de TripleTen (Figma)
 - **API de noticias**: News API (newsapi.org)
+- **Backend mock**: mockapi.io
 - **Sitio Web**: [https://osva-dev.github.io/news_explorer_frontend/](https://osva-dev.github.io/news_explorer_frontend/)
 
 ---
