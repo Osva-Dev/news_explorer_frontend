@@ -1,15 +1,17 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import App from "./components/App/App";
 import "./index.css";
 import "./vendor/normalize.css";
 import "./vendor/fonts.css";
-import App from "./components/App/App.jsx";
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <BrowserRouter>
+const basename = import.meta.env.BASE_URL || "/";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <BrowserRouter basename={basename}>
       <App />
     </BrowserRouter>
-  </StrictMode>,
+  </React.StrictMode>,
 );
