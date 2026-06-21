@@ -1,4 +1,4 @@
-const BASE_URL = "https://6a371f6ac105017aa638c910.mockapi.io";
+const BASE_URL = "https://6a3734bbc105017aa638ceb3.mockapi.io/";
 
 export const registerUser = async (email, password, name) => {
   const response = await fetch(`${BASE_URL}/users`, {
@@ -33,6 +33,9 @@ export const loginUser = async (email, password) => {
 
 export const getSavedArticles = async (userId) => {
   const response = await fetch(`${BASE_URL}/saved-articles?userId=${userId}`);
+  if (response.status === 404) {
+    return [];
+  }
   if (!response.ok) {
     throw new Error("Error al obtener artículos guardados");
   }
@@ -40,12 +43,10 @@ export const getSavedArticles = async (userId) => {
 };
 
 export const saveArticle = async (userId, article) => {
-  const checkResponse = await fetch(
-    `${BASE_URL}/saved-articles?userId=${userId}&articleId=${article.id}`,
-  );
-  const existing = await checkResponse.json();
-  if (existing.length > 0) {
-    return existing[0];
+  const allArticles = await getSavedArticles(userId);
+  const exists = allArticles.some((saved) => saved.articleId === article.id);
+  if (exists) {
+    return allArticles.find((saved) => saved.articleId === article.id);
   }
   const response = await fetch(`${BASE_URL}/saved-articles`, {
     method: "POST",

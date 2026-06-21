@@ -1,3 +1,4 @@
+// src/components/App/App.jsx
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
@@ -62,6 +63,7 @@ function InfoTooltip({ isOpen, onClose, title, message }) {
 }
 
 function App() {
+  // Estados para popups
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
@@ -69,25 +71,47 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
+  // Estados de autenticación y artículos guardados
   const [currentUser, setCurrentUser] = useState(null);
   const [savedArticles, setSavedArticles] = useState([]);
 
+  // Estados de búsqueda
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchError, setSearchError] = useState("");
   const [searchKeyword, setSearchKeyword] = useState("");
 
+  // Cargar usuario desde localStorage al montar (con verificación)
   useEffect(() => {
     const storedUser = localStorage.getItem("currentUser");
     if (storedUser) {
       const user = JSON.parse(storedUser);
-      setCurrentUser(user);
-      getSavedArticles(user.id)
-        .then((articles) => setSavedArticles(articles))
-        .catch((err) => console.error(err));
+      // Verificar si el usuario aún existe en mockapi.io
+      fetch(`https://6a371f6ac105017aa638c910.mockapi.io/users/${user.id}`)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Usuario no existe en mockapi.io");
+          }
+          return res.json();
+        })
+        .then((validUser) => {
+          setCurrentUser(validUser);
+          // Cargar sus artículos guardados
+          return getSavedArticles(validUser.id);
+        })
+        .then((articles) => {
+          setSavedArticles(articles);
+        })
+        .catch((err) => {
+          console.error("Error al validar usuario:", err);
+          localStorage.removeItem("currentUser");
+          setCurrentUser(null);
+          setSavedArticles([]);
+        });
     }
   }, []);
 
+  // Funciones de popups
   const closeAllPopups = () => {
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(false);
@@ -99,6 +123,7 @@ function App() {
 
   const handleLoginClick = () => setIsLoginPopupOpen(true);
 
+  // --- Autenticación ---
   const handleLoginSubmit = async (e, email, password) => {
     e.preventDefault();
     try {
@@ -135,6 +160,7 @@ function App() {
     localStorage.removeItem("currentUser");
   };
 
+  // --- Guardar y eliminar artículos ---
   const handleSaveArticle = async (article) => {
     if (!currentUser) return;
     try {
@@ -147,15 +173,26 @@ function App() {
   };
 
   const handleDeleteArticle = async (savedArticleId) => {
+    if (
+      !savedArticleId ||
+      typeof savedArticleId !== "string" ||
+      savedArticleId.includes("undefined")
+    ) {
+      console.warn("ID inválido:", savedArticleId);
+      return;
+    }
     try {
       await deleteSavedArticle(savedArticleId);
-      setSavedArticles((prev) => prev.filter((a) => a.id !== savedArticleId));
+      setSavedArticles((prev) =>
+        prev.filter((a) => a.id !== savedArticleId && a._id !== savedArticleId),
+      );
     } catch (error) {
       setErrorMessage(error.message);
       setIsErrorPopupOpen(true);
     }
   };
 
+  // --- Búsqueda ---
   const handleSearch = async (keyword) => {
     if (!keyword.trim()) {
       setErrorMessage("Por favor, introduce una palabra clave");
@@ -204,6 +241,7 @@ function App() {
     }
   };
 
+  // Cargar caché de búsqueda
   useEffect(() => {
     const cached = localStorage.getItem("cachedNews");
     if (cached) {
@@ -215,6 +253,7 @@ function App() {
     }
   }, []);
 
+  // Cambiar entre login y registro
   const switchToRegister = () => {
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(true);
@@ -264,6 +303,7 @@ function App() {
       </Routes>
       <Footer />
 
+      {/* Popups ... (sin cambios) */}
       <PopupWithForm
         isOpen={isLoginPopupOpen}
         onClose={closeAllPopups}

@@ -1,13 +1,19 @@
 import { useState } from "react";
-
 import NewsCardList from "../NewsCardList/NewsCardList";
 import Preloader from "../Preloader/Preloader";
-
 import "./Main.css";
-
 import notFound from "../../images/icons/not_found.svg";
 
-function Main({ searchResults, isLoading, searchError, searchKeyword }) {
+function Main({
+  searchResults,
+  isLoading,
+  searchError,
+  searchKeyword,
+  currentUser,
+  savedArticles,
+  onSaveArticle,
+  onDeleteArticle,
+}) {
   const [visibleCount, setVisibleCount] = useState(3);
   const totalResults = searchResults.length;
   const visibleResults = searchResults.slice(0, visibleCount);
@@ -52,7 +58,14 @@ function Main({ searchResults, isLoading, searchError, searchKeyword }) {
         {!isLoading && !searchError && searchResults.length > 0 && (
           <>
             <h2 className="main__title">Resultados de la búsqueda</h2>
-            <NewsCardList cards={visibleResults} />
+            <NewsCardList
+              cards={visibleResults}
+              isSavedPage={false}
+              isLoggedIn={!!currentUser}
+              savedArticles={savedArticles}
+              onSaveArticle={onSaveArticle}
+              onDeleteArticle={onDeleteArticle}
+            />
             {visibleCount < totalResults && (
               <button className="main__button" onClick={handleShowMore}>
                 Ver más

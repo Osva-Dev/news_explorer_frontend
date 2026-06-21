@@ -12,8 +12,20 @@ function NewsCard({
   source,
   keyword,
   isSavedPage,
+  isLoggedIn,
+  isSaved,
+  onSave,
   onDelete,
 }) {
+  const handleSaveClick = () => {
+    if (!isLoggedIn) return;
+    if (isSaved) {
+      onDelete();
+    } else {
+      onSave();
+    }
+  };
+
   return (
     <div className="news-card">
       <div className="news-card__image-container">
@@ -21,8 +33,11 @@ function NewsCard({
         {isSavedPage && keyword && (
           <div className="news-card__keyword">{keyword}</div>
         )}
-        <div className="news-card__save-button__container">
-          {!isSavedPage ? (
+        <div
+          className="news-card__save-button__container"
+          onClick={handleSaveClick}
+        >
+          {!isLoggedIn ? (
             <>
               <img
                 className="news-card__save-button news-card__save-button_default"
@@ -38,7 +53,7 @@ function NewsCard({
                 Inicia sesión para guardar artículos
               </span>
             </>
-          ) : (
+          ) : isSaved ? (
             <>
               <img
                 className="news-card__save-button news-card__save-button_default"
@@ -50,7 +65,23 @@ function NewsCard({
                 src={deleteIconHover}
                 alt="Delete hover"
               />
-              <span className="news-card__save-tooltip">Remove from saved</span>
+              <span className="news-card__save-tooltip">
+                Eliminar artículo guardado
+              </span>
+            </>
+          ) : (
+            <>
+              <img
+                className="news-card__save-button news-card__save-button_default"
+                src={saveIcon}
+                alt="Save"
+              />
+              <img
+                className="news-card__save-button news-card__save-button_hover"
+                src={saveIconHover}
+                alt="Save hover"
+              />
+              <span className="news-card__save-tooltip">Guardar artículo</span>
             </>
           )}
         </div>
