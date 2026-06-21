@@ -1,6 +1,5 @@
-// src/components/App/App.jsx
 import { useState, useEffect } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom"; // ← añadido Navigate y useNavigate
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
@@ -17,14 +16,12 @@ import {
 } from "../../utils/MainApi";
 import "./App.css";
 
-// ===== COMPONENTE PROTECTED ROUTE =====
 function ProtectedRoute({ isLoggedIn, children }) {
   if (!isLoggedIn) {
     return <Navigate to="/" replace />;
   }
   return children;
 }
-// =======================================
 
 function InfoTooltip({ isOpen, onClose, title, message }) {
   useEffect(() => {
@@ -72,9 +69,8 @@ function InfoTooltip({ isOpen, onClose, title, message }) {
 }
 
 function App() {
-  const navigate = useNavigate(); // ← para redirigir en logout
+  const navigate = useNavigate();
 
-  // Estados para popups
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
@@ -82,17 +78,14 @@ function App() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  // Estados de autenticación y artículos guardados
   const [currentUser, setCurrentUser] = useState(null);
   const [savedArticles, setSavedArticles] = useState([]);
 
-  // Estados de búsqueda
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchError, setSearchError] = useState("");
   const [searchKeyword, setSearchKeyword] = useState("");
 
-  // Cargar usuario desde localStorage al montar (con verificación)
   useEffect(() => {
     const storedUser = localStorage.getItem("currentUser");
     if (storedUser) {
@@ -120,7 +113,6 @@ function App() {
     }
   }, []);
 
-  // Funciones de popups
   const closeAllPopups = () => {
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(false);
@@ -132,7 +124,6 @@ function App() {
 
   const handleLoginClick = () => setIsLoginPopupOpen(true);
 
-  // --- Autenticación ---
   const handleLoginSubmit = async (e, email, password) => {
     e.preventDefault();
     try {
@@ -167,10 +158,9 @@ function App() {
     setCurrentUser(null);
     setSavedArticles([]);
     localStorage.removeItem("currentUser");
-    navigate("/"); // ← redirige a inicio
+    navigate("/");
   };
 
-  // --- Guardar y eliminar artículos ---
   const handleSaveArticle = async (article) => {
     if (!currentUser) return;
     try {
@@ -202,7 +192,6 @@ function App() {
     }
   };
 
-  // --- Búsqueda ---
   const handleSearch = async (keyword) => {
     if (!keyword.trim()) {
       setErrorMessage("Por favor, introduce una palabra clave");
@@ -251,7 +240,6 @@ function App() {
     }
   };
 
-  // Cargar caché de búsqueda
   useEffect(() => {
     const cached = localStorage.getItem("cachedNews");
     if (cached) {
@@ -263,7 +251,6 @@ function App() {
     }
   }, []);
 
-  // Cambiar entre login y registro
   const switchToRegister = () => {
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(true);
@@ -315,7 +302,6 @@ function App() {
       </Routes>
       <Footer />
 
-      {/* Popups (sin cambios) */}
       <PopupWithForm
         isOpen={isLoginPopupOpen}
         onClose={closeAllPopups}
